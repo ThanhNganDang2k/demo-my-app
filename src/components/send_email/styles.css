@@ -197,3 +197,13 @@
   .info button:hover{
    background-color: yellowgreen;
   }
+  .successfully{
+    background-color: #d0d4ff;
+    width: 800px;
+    height: 170px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .successfully h2{
+    margin-top: 70px;
+  }

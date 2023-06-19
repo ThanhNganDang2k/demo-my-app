@@ -11,6 +11,7 @@ import {
   USER_REGISTER_SUCCESS,
   USER_SEND_EMAIL_REQUEST,
   USER_SEND_EMAIL_SUCCESS,
+  USER_SEND_EMAIL_FAIL,
 } from "../Constants/UserContants";
 
 // LOGIN
@@ -30,7 +31,7 @@ export const userLoginReducer = (state = {}, action) => {
     //   return { loading: false, userInfo: action.payload };
     // case USER_LOGIN_FAIL:
     //   return { loading: false, error: action.payload };
-     
+
     default:
       return state;
   }
@@ -50,8 +51,6 @@ export const userRegisterReducer = (state = {}, action) => {
   }
 };
 
-
-
 // SEND EMAIL
 export const userSendEmailReducer = (state = {}, action) => {
   switch (action.type) {
@@ -59,13 +58,12 @@ export const userSendEmailReducer = (state = {}, action) => {
       return { loading: true };
     case USER_SEND_EMAIL_SUCCESS:
       return { loading: false, userEmail: action.payload };
-    case USER_LOGIN_FAIL:
+    case USER_SEND_EMAIL_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;
   }
 };
-
 
 // FORGOT PASSWORD
 export const userForgotPasswordReducer = (state = {}, action) => {
@@ -80,4 +78,3 @@ export const userForgotPasswordReducer = (state = {}, action) => {
       return state;
   }
 };
-

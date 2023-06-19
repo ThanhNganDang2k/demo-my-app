@@ -24,13 +24,13 @@ const userInfoFromLocalStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
 
-  // send email
-const userEmailFromLocalStorage = localStorage.getItem("userEmail")
-? JSON.parse(localStorage.getItem("userEmail"))
-: null;
+// send email
+// const userEmailFromLocalStorage = localStorage.getItem("userEmail")
+//   ? JSON.parse(localStorage.getItem("userEmail"))
+//   : null;
 
-  // Forgot password
-  const userForgotFromLocalStorage = localStorage.getItem("userInfo")
+// Forgot password
+const userForgotFromLocalStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
 

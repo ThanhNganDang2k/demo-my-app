@@ -47,7 +47,7 @@ export const logout = () => async (dispatch) => {
 export const register = (username, password, email) => async (dispatch) => {
   try {
     dispatch({ type: USER_REGISTER_REQUEST });
-    const { data } = await userApi.register({ username, password, email });
+    const data = await userApi.register({ username, password, email });
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
     // dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     // localStorage.setItem("userInfo", JSON.stringify(data));
@@ -66,8 +66,10 @@ export const register = (username, password, email) => async (dispatch) => {
 export const sendEmail = (email) => async (dispatch) => {
   try {
     dispatch({ type: USER_SEND_EMAIL_REQUEST });
-    const { data } = await userApi.sendemail({ email });
-    dispatch({ type: USER_SEND_EMAIL_SUCCESS, payload: data });
+    const { statusCode } = await userApi.sendemail({ email });
+    if (statusCode === 200) {
+      dispatch({ type: USER_SEND_EMAIL_SUCCESS, payload: email });
+    }
     // localStorage.setItem("userEmail", JSON.stringify(data));
   } catch (error) {
     dispatch({
