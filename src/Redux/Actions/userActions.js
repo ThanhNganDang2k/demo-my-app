@@ -20,7 +20,7 @@ import userApi from "../../api/userApi";
 export const login = (username, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
-    const {data} =  await userApi.login({ username, password })
+    const { data } = await userApi.login({ username, password });
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
@@ -47,7 +47,7 @@ export const logout = () => async (dispatch) => {
 export const register = (username, password, email) => async (dispatch) => {
   try {
     dispatch({ type: USER_REGISTER_REQUEST });
-    const { data } =  await userApi.register({ username, password, email })
+    const { data } = await userApi.register({ username, password, email });
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
     // dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     // localStorage.setItem("userInfo", JSON.stringify(data));
@@ -55,24 +55,20 @@ export const register = (username, password, email) => async (dispatch) => {
     dispatch({
       type: USER_REGISTER_FAIL,
       payload:
-      error_reg.response && error_reg.response.data.message
-        ? error_reg.response.data.message
-        : error_reg.message,
+        error_reg.response && error_reg.response.data.message
+          ? error_reg.response.data.message
+          : error_reg.message,
     });
   }
 };
-
 
 // // SEND EMAIL
 export const sendEmail = (email) => async (dispatch) => {
   try {
     dispatch({ type: USER_SEND_EMAIL_REQUEST });
-    const {data} =  await userApi.sendemail({ email })
-    
+    const { data } = await userApi.sendemail({ email });
     dispatch({ type: USER_SEND_EMAIL_SUCCESS, payload: data });
-    localStorage.setItem("userEmail", JSON.stringify(data));
-    dispatch({ type: USER_FORGOT_PASSWORD_SUCCESS, payload: data });
-    
+    // localStorage.setItem("userEmail", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_SEND_EMAIL_FAIL,
@@ -84,13 +80,15 @@ export const sendEmail = (email) => async (dispatch) => {
   }
 };
 
-
 // // FORGOT PASSWORD
-export const forgotPassword = (email, newPass) => async (dispatch) => {
+export const forgotPassword = (query, newPass) => async (dispatch) => {
   try {
     dispatch({ type: USER_FORGOT_PASSWORD_REQUEST });
-    const {data} =  await userApi.forgotpassword({email, newPass })
-    
+    const { data } = await userApi.forgotpassword({
+      iv: query.get("i"),
+      encryptedData: query.get("data"),
+      newPass: newPass,
+    });
     dispatch({ type: USER_FORGOT_PASSWORD_SUCCESS, payload: data });
     // localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
@@ -103,5 +101,3 @@ export const forgotPassword = (email, newPass) => async (dispatch) => {
     });
   }
 };
-
-

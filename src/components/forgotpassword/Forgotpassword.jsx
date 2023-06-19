@@ -11,7 +11,6 @@ import Message from "../../components/loadingError/Error";
 import Loading from "../../components/loadingError/Loading";
 const Forgotpassword = () => {
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   function handlePassword(event) {
@@ -55,8 +54,9 @@ const Forgotpassword = () => {
   }, [userInfo, navigate]);
 
   const forgotpasswordlHandler = (e) => {
+    const query = new URLSearchParams(window.location.href.split("?")[1]);
     e.preventDefault();
-    dispatch(forgotPassword(email, password));
+    dispatch(forgotPassword(query, password));
   };
   return (
     <>
@@ -76,9 +76,7 @@ const Forgotpassword = () => {
               >
                 <div className="container d-flex flex-column justify-content-center align-items-center login-center">
                   <form className="Login col-md-8 col-lg-4 col-11">
-                    <label>
-                      New Password
-                    </label>
+                    <label>New Password</label>
                     <span
                       style={{
                         fontSize: "16px",
@@ -102,12 +100,6 @@ const Forgotpassword = () => {
                     </span>
                     <div className="info">
                       <input
-                        type="email"
-                        placeholder="Enter Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                      <input
                         type="password"
                         placeholder="Confirm Password"
                         value={password}
@@ -124,7 +116,6 @@ const Forgotpassword = () => {
                         onClick={(e) => {
                           forgotpasswordlHandler(e);
                         }}
-                        
                       >
                         SUBMIT
                       </button>
