@@ -96,7 +96,7 @@ const Login = () => {
                   {" "}
                   {error_reg && (
                     <Message variant="alert-danger" style={{ color: "red" }}>
-                      {errorMessage ? errorMessage : error_reg}
+                      <h4> {errorMessage ? errorMessage : error_reg}</h4>
                     </Message>
                   )}
                   {userInfo_register && (
@@ -159,6 +159,14 @@ const Login = () => {
               <label htmlFor="chk" aria-hidden="true">
                 Login
               </label>
+              {error && (
+                <Message variant="alert-danger">
+                  <h4 style={{ textAlign: "center", marginTop: "-25px" }}>
+                    {error}
+                  </h4>
+                </Message>
+              )}
+              {/* {loading && <Loading />} */}
               <input
                 type="text"
                 name="username"
@@ -166,6 +174,7 @@ const Login = () => {
                 require=""
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                style={{ marginTop: "30px" }}
               />
               <input
                 type="password"
@@ -175,8 +184,6 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              {error && <Message variant="alert-danger">{error}</Message>}
-              {/* {loading && <Loading />} */}
               <button type="submit">Login</button>
               <p
                 style={{
