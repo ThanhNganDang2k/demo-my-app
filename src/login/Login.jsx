@@ -51,7 +51,7 @@ const Login = () => {
   const { error, loading, userInfo } = userLogin;
 
   const userRegister = useSelector((state) => state.userRegister);
-  const { error_reg } = userRegister;
+  const { error_reg, userInfo_register } = userRegister;
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -78,7 +78,11 @@ const Login = () => {
           {/* <Toast></Toast> */}
           <div className="signup">
             <form onSubmit={submitHandler_Up}>
-              <label htmlFor="chk" aria-hidden="true">
+              <label
+                htmlFor="chk"
+                aria-hidden="true"
+                style={{ height: "50px", padding: "2px", margin: "20px" }}
+              >
                 Sign Up
               </label>
               <span
@@ -88,11 +92,21 @@ const Login = () => {
                   textAlign: "center",
                 }}
               >
-                {error_reg && (
-                  <Message variant="alert-danger" style={{ color: "red" }}>
-                    {errorMessage ? errorMessage : error_reg}
-                  </Message>
-                )}
+                <div>
+                  {" "}
+                  {error_reg && (
+                    <Message variant="alert-danger" style={{ color: "red" }}>
+                      {errorMessage ? errorMessage : error_reg}
+                    </Message>
+                  )}
+                  {userInfo_register && (
+                    <Message variant="alert-danger">
+                      <h3 style={{ color: "#d0d4ff" }}>
+                        Register Successfully
+                      </h3>
+                    </Message>
+                  )}
+                </div>
                 {/* {!error_reg && !errorMessage && (
                   <Message variant="alert-danger" style={{ color: "red" }}>
                     {"Successfully!"}
@@ -107,6 +121,7 @@ const Login = () => {
                 placeholder="User name"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                style={{ marginTop: "30px" }}
               />
               <input
                 type="password"

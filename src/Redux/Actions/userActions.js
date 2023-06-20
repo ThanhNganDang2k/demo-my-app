@@ -47,8 +47,10 @@ export const logout = () => async (dispatch) => {
 export const register = (username, password, email) => async (dispatch) => {
   try {
     dispatch({ type: USER_REGISTER_REQUEST });
-    const data = await userApi.register({ username, password, email });
-    dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
+    const { data } = await userApi.register({ username, password, email });
+    if ({ data }) {
+      dispatch({ type: USER_REGISTER_SUCCESS, payload: email });
+    }
     // dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     // localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error_reg) {
